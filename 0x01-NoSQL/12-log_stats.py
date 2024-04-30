@@ -3,17 +3,17 @@
 from pymongo import MongoClient
 
 
-client = MongoClient("mongodb://127.0.0.1:27017")
-nginx_coll = client.logs.nginx
+if __name__ == "__main__":
+    client = MongoClient("mongodb://127.0.0.1:27017")
+    nginx_coll = client.logs.nginx
 
-print(f"{nginx_coll.count_documents({})} logs")
+    print(f"{nginx_coll.count_documents({})} logs")
 
-methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
-print("Methods:")
-for method in methods:
-    query = nginx_coll.count_documents({'method': method})
-    print(f"\tmethod {method}: {query}")
+    methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+    print("Methods:")
+    for method in methods:
+        query = nginx_coll.count_documents({'method': method})
+        print(f"\tmethod {method}: {query}")
 
-
-status = nginx_coll.count_documents({"method": "GET", "path": "/status"})
-print(f'{status} status check')
+    status = nginx_coll.count_documents({"method": "GET", "path": "/status"})
+    print(f'{status} status check')

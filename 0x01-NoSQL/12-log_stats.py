@@ -15,4 +15,5 @@ for method in methods:
     print(f"\tmethod {method}: {query}")
 
 
-print(f'{nginx_coll.count_documents({"path": "/status"})} status check')
+status = nginx_coll.count_documents({"method": "GET", "path": "/status"})
+print(f'{status} status check')

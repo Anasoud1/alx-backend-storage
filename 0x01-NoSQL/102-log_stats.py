@@ -32,4 +32,4 @@ if __name__ == "__main__":
                 {'$limit': 10}
           ])
     for ip in list_ips:
-        print(f'{ip.get("_id")}: {ip.get("total_req")}')
+        print(f'\t{ip.get("_id")}: {ip.get("total_req")}')

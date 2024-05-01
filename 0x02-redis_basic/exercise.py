@@ -35,7 +35,7 @@ def replay(method: Callable) -> None:
     r = redis.Redis()
     name = method.__qualname__
     nb_call = r.get(name)
-    print(f'{name} was called {nb_call} times:')
+    print(f'{name} was called {nb_call.decode("utf-8")} times:')
     inp = r.lrange(name + ":inputs", 0, -1)
     outp = r.lrange(name + ":outputs", 0, -1)
     for i, o in zip(inp, outp):

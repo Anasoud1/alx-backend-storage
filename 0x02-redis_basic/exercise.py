@@ -10,7 +10,7 @@ class Cache:
     def __init__(self) -> None:
         """constructor"""
         self._redis = redis.Redis()
-        self._redis.flushdb()
+        self._redis.flushdb(True)
 
     def store(self, data: Union[int, str, str, float]) -> str:
         """generate a random key anad return it"""

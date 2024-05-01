@@ -25,14 +25,14 @@ class Cache:
         self._redis.flushdb(True)
 
     @count_calls
-    def store(self, data: Union[int, str, bytes, float]) -> str:
+    def store(self, data: Union[str, bytes,int, float]) -> str:
         """generate a random key anad return it"""
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Callable = None) -> Union[int, str, bytes,
-                                                          float]:
+    def get(self, key: str,
+            fn: Optional[Callable] = None) -> Union[str, bytes, int, float]:
         """get data from the cache"""
         data = self._redis.get(key)
         if (fn is None):
